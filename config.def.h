@@ -13,8 +13,8 @@ static const int showsystray        = 1;        /* 0 means no systray */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
 static const int focusonwheel       = 0;
-static const char *fonts[]          = { "monospace:size=10" };
-static const char dmenufont[]       = "monospace:size=10";
+static const char *fonts[]          = { "Cozette:size=10" };
+static const char dmenufont[]       = "Cozette:size=10";
 static char normbgcolor[]           = "#222222";
 static char normbordercolor[]       = "#444444";
 static char normfgcolor[]           = "#bbbbbb";
@@ -68,11 +68,11 @@ static const Layout layouts[] = {
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-fn", dmenufont, "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbgcolor, "-sf", selfgcolor, NULL };
 static const char *termcmd[]  = { "st", NULL };
-static const char *upvol[] = { "/usr/bin/pactl", "set-sink-volume", "@DEFAULT_SINK@", "+5%", NULL };
-static const char *downvol[] = { "/usr/bin/pactl", "set-sink-volume", "@DEFAULT_SINK@", "-5%", NULL };
-static const char *mutevol[] = { "/usr/bin/pactl", "set-sink-mute", "@DEFAULT_SINK@", "toggle", NULL };
-static const char *light_up[]   = { "/usr/bin/xbacklight", "+5", NULL };
-static const char *light_down[] = { "/usr/bin/xbacklight", "-5", NULL };
+static const char *upvol[] = { "pactl", "set-sink-volume", "@DEFAULT_SINK@", "+5%", NULL };
+static const char *downvol[] = { "pactl", "set-sink-volume", "@DEFAULT_SINK@", "-5%", NULL };
+static const char *mutevol[] = { "pactl", "set-sink-mute", "@DEFAULT_SINK@", "toggle", NULL };
+static const char *light_up[]   = { "xbacklight", "+5", NULL };
+static const char *light_down[] = { "xbacklight", "-5", NULL };
 static const Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_r,      spawn,          {.v = dmenucmd } },
@@ -109,11 +109,13 @@ static const Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
 	{ MODKEY,                       XK_o,      winview,        {0} },
 	{ Mod1Mask,                     XK_Tab,    alttab,         {0} },
-	{ 0,                       XF86XK_AudioLowerVolume, spawn, {.v = downvol } },
-	{ 0,                       XF86XK_AudioMute, spawn, {.v = mutevol } },
-	{ 0,                       XF86XK_AudioRaiseVolume, spawn, {.v = upvol   } },
+	{ 0,				XF86XK_AudioLowerVolume, spawn, {.v = downvol } },
+	{ 0,				XF86XK_AudioMute, spawn, {.v = mutevol } },
+	{ 0,				XF86XK_AudioRaiseVolume, spawn, {.v = upvol   } },
 	{ 0,				XF86XK_MonBrightnessUp,		spawn,	{.v = light_up} },
 	{ 0,				XF86XK_MonBrightnessDown,	spawn,	{.v = light_down} },
+	{ 0,				XK_Print,	spawn,	SHCMD("maim /home/$(whoami)/Pictures/$(date).png") },
+	{ MODKEY|ShiftMask,		XK_s,	spawn,	SHCMD("maim -Bs /home/$(whoami)/Pictures/$(date).png") },
 };
 
 /* button definitions */
