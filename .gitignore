@@ -2,9 +2,7 @@ dwm
 drw.o
 dwm.o
 util.o
-dwm-6.5.tar.gz
+dwm-*.tar.gz
 config.h
-config.def.h.orig
-config.def.h.rej
-dwm.c.rej
-dwm.c.orig
+*.orig
+*.rej
