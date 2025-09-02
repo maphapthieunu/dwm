@@ -92,6 +92,7 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
 	{ MODKEY,                       XK_f,      setlayout,      {.v = &layouts[1]} },
 	{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} },
+	{ MODKEY,			XK_a,	   togglefloating, {0} },
 	{ MODKEY,                       XK_0,      view,           {.ui = ~0 } },
 	{ MODKEY|ShiftMask,             XK_0,      tag,            {.ui = ~0 } },
 	{ MODKEY,                       XK_comma,  focusmon,       {.i = -1 } },
@@ -116,8 +117,8 @@ static const Key keys[] = {
 	{ 0,				XF86XK_AudioRaiseVolume, spawn, {.v = upvol   } },
 	{ 0,				XF86XK_MonBrightnessUp,		spawn,	{.v = light_up} },
 	{ 0,				XF86XK_MonBrightnessDown,	spawn,	{.v = light_down} },
-	{ 0,				XK_Print,	spawn,	SHCMD("maim /home/$(whoami)/Pictures/$(date).png") },
-	{ MODKEY|ShiftMask,		XK_s,	spawn,	SHCMD("maim -Bs /home/$(whoami)/Pictures/$(date).png") },
+	{ 0,				XK_Print,	spawn,	SHCMD("maim \"/home/$(whoami)/Pictures/$(date).png\"") },
+	{ MODKEY|ShiftMask,		XK_s,	spawn,	SHCMD("maim -Bs \"/home/$(whoami)/Pictures/$(date).png\"") },
 };
 
 /* button definitions */
